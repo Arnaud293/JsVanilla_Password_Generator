@@ -2,11 +2,15 @@ const dataLowercase = "azertyuiopqsdfghjklmwxcvbn";
 const dataUppercase = dataLowercase.toLocaleUpperCase();
 const dataNumbers = '0123456789';
 const dataSymbols ="^¨?.ù:;&$éè'\"()-_ç";
+const rangeValue = document.getElementById('password-length');
+
+const passwordOutput = document.getElementById('password-output');
 
 
 
 const generatePassword = () => {
     let data = [];
+    let password = "";
 
     // Add spread operator for breaking elements in array into distinct elements
     if(lowercase.checked) data.push(...dataLowercase);
@@ -14,7 +18,16 @@ const generatePassword = () => {
     if(numbers.checked) data.push(...dataNumbers);
     if(symbols.checked) data.push(...dataSymbols);
 
-    console.log(data);
+    if(data.length === 0 ){
+        alert("Sélectionnez une option pour votre mot de passe");
+        return;
+    }
+
+    for(i = 0; i<rangeValue.value; i++){
+        password  += (data[Math.floor(Math.random() * data.length)]);
+       
+    }
+    passwordOutput.value = password;
 }
 
 generateButton.addEventListener('click', generatePassword)
